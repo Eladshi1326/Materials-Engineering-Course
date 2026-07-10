@@ -81,6 +81,7 @@ export default {
     {
       name: "שינוי אנרגיה חופשית כולל בנוקלאציה",
       expr: "ΔG = (4/3)·π·r³·ΔGv + 4·π·r²·γ",
+      latex: "\\Delta G = \\tfrac{4}{3}\\pi r^{3} \\Delta G_v + 4\\pi r^{2} \\gamma",
       where: [
         { sym: "ΔGv", desc: "אנרגיה חופשית נפחית (שלילית מתחת ל-Tm)" },
         { sym: "γ", desc: "אנרגיית פני שטח (תמיד חיובית)" },
@@ -91,16 +92,19 @@ export default {
     {
       name: "רדיוס קריטי - נוקלאציה הומוגנית",
       expr: "r* = −2γ / ΔGv",
+      latex: "r^{*} = -\\frac{2\\gamma}{\\Delta G_v}",
       note: "גרעין ברדיוס r* נמצא בשיווי משקל לא-יציב; מעליו - גדילה ספונטנית, מתחתיו - התמוססות (עובר)."
     },
     {
       name: "אנרגיית הפעלה קריטית - נוקלאציה הומוגנית",
       expr: "ΔG* = 16·π·γ³ / [3·(ΔGv)²]",
+      latex: "\\Delta G^{*} = \\frac{16\\pi\\gamma^{3}}{3(\\Delta G_v)^{2}}",
       note: "מחסום האנרגיה הדרוש להיווצרות גרעין יציב; יורד בחדות עם העמקת ההקרשה-יתר."
     },
     {
       name: "תלות טמפרטורה של האנרגיה החופשית הנפחית",
       expr: "ΔGv = ΔHf·(Tm − T) / Tm",
+      latex: "\\Delta G_v = \\frac{\\Delta H_f (T_m - T)}{T_m}",
       where: [
         { sym: "ΔHf", desc: "חום היתוך סמוי" },
         { sym: "Tm", desc: "טמפרטורת התכה בשיווי משקל [K]" },
@@ -111,22 +115,26 @@ export default {
     {
       name: "רדיוס קריטי כתלות בהקרשת-יתר",
       expr: "r* = [−2·γ·Tm / ΔHf] × [1 / (Tm − T)]",
+      latex: "r^{*} = \\left(\\frac{-2\\gamma T_m}{\\Delta H_f}\\right) \\times \\left(\\frac{1}{T_m - T}\\right)",
       note: "ר* קטן ככל שהקרשת-היתר ΔT=Tm−T גדולה יותר."
     },
     {
       name: "אנרגיית הפעלה כתלות בהקרשת-יתר",
       expr: "ΔG* = [16·π·γ³·Tm² / 3ΔHf²] × [1 / (Tm − T)²]",
+      latex: "\\Delta G^{*} = \\left(\\frac{16\\pi\\gamma^{3} T_m^{2}}{3\\Delta H_f^{2}}\\right) \\times \\left(\\frac{1}{(T_m - T)^{2}}\\right)",
       note: "תלות הפוכה בריבוע ΔT; בהקרשת-יתר קטנה מאוד ΔG* שואף לאינסוף - נוקלאציה נחסמת."
     },
     {
       name: "מספר גרעינים יציבים",
       expr: "n* = K1 · exp(−ΔG* / kT)",
+      latex: "n^{*} = K_1 \\exp\\!\\left(-\\frac{\\Delta G^{*}}{kT}\\right)",
       where: [{ sym: "K1", desc: "קבוע הקשור למספר הגרעינים הכולל" }],
       note: "n* עולה בחדות ככל שהטמפרטורה יורדת מתחת ל-Tm, בשל הקטנת ΔG*."
     },
     {
       name: "קצב נוקלאציה הומוגנית",
       expr: "Rn = K1·K2·K3 · exp(−ΔG*/kT) · exp(−Qd/kT)",
+      latex: "R_n = K_1 K_2 K_3 \\exp\\!\\left(-\\frac{\\Delta G^{*}}{kT}\\right) \\exp\\!\\left(-\\frac{Q_d}{kT}\\right)",
       where: [
         { sym: "Rn", desc: "קצב נוקלאציה - מספר גרעינים יציבים ליחידת נפח לשנייה" },
         { sym: "Qd", desc: "אנרגיית הפעלה לדיפוזיה" }
@@ -136,23 +144,27 @@ export default {
     {
       name: "יחס אנרגיות מנשק - נוקלאציה הטרוגנית",
       expr: "γIL = γSI + γSL·cos θ",
+      latex: "\\gamma_{IL} = \\gamma_{SI} + \\gamma_{SL} \\cos\\theta",
       where: [{ sym: "θ", desc: "זווית הרטבה (wetting angle)" }],
       note: "מאזן מתיחת פני שטח בנוקלאציה על משטח שטוח קיים."
     },
     {
       name: "אנרגיית הפעלה - נוקלאציה הטרוגנית",
       expr: "ΔG*het = ΔG*hom · S(θ)",
+      latex: "\\Delta G^{*}_{\\text{het}} = \\Delta G^{*}_{\\text{hom}} \\, S(\\theta)",
       where: [{ sym: "S(θ)", desc: "פונקציית צורה, ערכה בין 0 ל-1" }],
       note: "S(θ)≈0.01 עבור θ=30°, S(θ)≈0.5 עבור θ=90° - נוקלאציה הטרוגנית תמיד קלה יותר מהומוגנית."
     },
     {
       name: "קצב גדילה",
       expr: "G = C · exp(−Q/kT)",
+      latex: "G = C \\exp\\!\\left(-\\frac{Q}{kT}\\right)",
       note: "תלות מעריכית זהה למקדם הדיפוזיה; משוואת ארניוס (Arrhenius) קלאסית."
     },
     {
       name: "משוואת אברמי",
       expr: "y = 1 − exp(−k·tⁿ)",
+      latex: "y = 1 - \\exp\\!\\left(-k t^{n}\\right)",
       where: [
         { sym: "y", desc: "שבר הטרנספורמציה שהושלם" },
         { sym: "k, n", desc: "קבועים בלתי-תלויי-זמן, ספציפיים לתגובה" }
@@ -162,11 +174,13 @@ export default {
     {
       name: "קצב טרנספורמציה",
       expr: "rate = 1 / t0.5",
+      latex: "\\text{rate} = \\frac{1}{t_{0.5}}",
       note: "t0.5 = הזמן הנדרש להשלמת 50% מהטרנספורמציה; ככל שקטן, הקצב מהיר יותר."
     },
     {
       name: "כלל תערובת לחוזק קריעה",
       expr: "TS = Wp·(TS)p + Wb·(TS)b",
+      latex: "TS = W_p (TS)_p + W_b (TS)_b",
       where: [{ sym: "Wp, Wb", desc: "שברי מסה של פרליט וביינייט" }],
       note: "קירוב ליניארי-משוקלל; אותו עיקרון תקף גם לגמישות (%RA) של מיקרו-מבנה מעורב."
     }

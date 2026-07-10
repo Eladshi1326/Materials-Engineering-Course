@@ -14,7 +14,7 @@ const blank = () => ({
   ch: {},
   exams: {},
   name: "",
-  settings: { free: false, theme: "dark", fs: "md" }
+  settings: { free: true, theme: "light", fs: "md" }
 });
 
 function readLS() {
@@ -60,19 +60,17 @@ export { getState };
 export function chap(id) {
   const k = String(id);
   if (!state.ch[k]) {
-    state.ch[k] = { read: [], quizBest: 0, attempts: 0, cards: false, match: 0, chal: 0, weak: [] };
+    state.ch[k] = { read: [], quizBest: 0, attempts: 0, cards: false, match: 0, chal: 0, fdrill: 0, weak: [] };
   }
   if (!state.ch[k].weak) state.ch[k].weak = [];
+  if (state.ch[k].fdrill == null) state.ch[k].fdrill = 0;
   return state.ch[k];
 }
 
 export const isDone = (id) => chap(id).quizBest >= PASS;
 
-export function isUnlocked(id) {
-  if (state.settings.free) return true;
-  if (Number(id) === 1) return true;
-  return isDone(Number(id) - 1);
-}
+/* כל התוכן פתוח — המסלול הוא המלצה, לא נעילה */
+export function isUnlocked() { return true; }
 
 export const unitDone = (u) => u.chapters.every(isDone);
 export const allDone = () => CHAPTERS.every((c) => isDone(c.id));
@@ -223,6 +221,15 @@ export function recordChallenge(chId, score) {
   touchStreak();
 }
 
+export function recordFormulaDrill(chId, score) {
+  const p = chap(chId);
+  const isBest = score > p.fdrill;
+  p.fdrill = Math.max(p.fdrill, score);
+  commit();
+  touchStreak();
+  return isBest;
+}
+
 /* ------------------------------------------------------------------ settings */
 export function setSetting(k, v) {
   state.settings = { ...state.settings, [k]: v };
@@ -233,7 +240,7 @@ export function setName(n) { state.name = n; commit(); }
 
 export function applyPrefs() {
   if (typeof document === "undefined") return;
-  document.documentElement.setAttribute("data-theme", state.settings.theme || "dark");
+  document.documentElement.setAttribute("data-theme", state.settings.theme || "light");
   document.documentElement.setAttribute("data-fs", state.settings.fs || "md");
 }
 

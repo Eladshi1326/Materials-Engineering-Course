@@ -11,6 +11,7 @@ import ChapterQuiz from "./pages/ChapterQuiz.jsx";
 import Challenge from "./pages/Challenge.jsx";
 import Flashcards from "./pages/Flashcards.jsx";
 import Matching from "./pages/Matching.jsx";
+import FormulaDrill from "./pages/FormulaDrill.jsx";
 import UnitExam from "./pages/UnitExam.jsx";
 import FinalExam from "./pages/FinalExam.jsx";
 import Glossary from "./pages/Glossary.jsx";
@@ -18,9 +19,15 @@ import Achievements from "./pages/Achievements.jsx";
 import SettingsPage from "./pages/Settings.jsx";
 import Certificate from "./pages/Certificate.jsx";
 
+/* גלילה לראש הדף רק במעבר לעמוד חדש באמת —
+   מעבר בין לשוניות של אותו פרק לא מזיז את הגלילה */
 function ScrollTop() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const key = pathname.replace(
+    /^(\/ch\/\d+)(\/(lesson|formulas|terms|summary|pitfalls|worked))?$/,
+    "$1"
+  );
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [key]);
   return null;
 }
 
@@ -43,6 +50,7 @@ export default function App() {
           <Route path="/ch/:id/play/quiz" element={<ChapterQuiz />} />
           <Route path="/ch/:id/play/cards" element={<Flashcards />} />
           <Route path="/ch/:id/play/match" element={<Matching />} />
+          <Route path="/ch/:id/play/formula" element={<FormulaDrill />} />
           <Route path="/ch/:id/play/challenge" element={<Challenge />} />
           <Route path="/exam/unit/:uid" element={<UnitExam />} />
           <Route path="/exam/final" element={<FinalExam />} />

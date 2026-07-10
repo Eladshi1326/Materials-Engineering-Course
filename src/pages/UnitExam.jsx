@@ -3,7 +3,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { UNITS, byId, EXAM_PASS } from "../data/index.js";
 import { QuizRunner, Results } from "../components/QuizRunner.jsx";
 import { examQuestions } from "../lib/questions.js";
-import { addXP, grantBadge, recordExam, unitDone, getState } from "../lib/store.js";
+import { addXP, grantBadge, recordExam, unitDone } from "../lib/store.js";
 
 export default function UnitExam() {
   const { uid } = useParams();
@@ -16,11 +16,16 @@ export default function UnitExam() {
   );
 
   if (!u) return <Navigate to="/map" replace />;
-  if (!unitDone(u) && !getState().settings.free) return <Navigate to="/map" replace />;
 
   if (!res) {
     return (
-      <QuizRunner
+      <>
+        {!unitDone(u) && (
+          <div className="notice mb">
+            עוד לא סיימת את כל פרקי יחידה {u.id} — אפשר לגשת למבחן בכל זאת, אבל מומלץ קודם להשלים את הפרקים.
+          </div>
+        )}
+        <QuizRunner
         key={round}
         questions={questions}
         xpPer={10}
@@ -34,7 +39,8 @@ export default function UnitExam() {
           if (pass) grantBadge(`unit${u.id}`);
           setRes({ ...r, xp });
         }}
-      />
+        />
+      </>
     );
   }
 

@@ -38,19 +38,6 @@ export default function SettingsPage() {
       <h1 className="h1">הגדרות</h1>
 
       <div className="card pad mt2">
-        <Row t="מצב חופשי" d="מבטל את נעילת הפרקים ומאפשר לדלג לכל פרק. מומלץ להשאיר כבוי כדי ללמוד בשלבים.">
-          <button
-            className={"switch" + (S.settings.free ? " on" : "")}
-            onClick={() => {
-              const v = !S.settings.free;
-              setSetting("free", v);
-              toast(v ? "מצב חופשי הופעל — כל הפרקים פתוחים" : "מצב חופשי כובה — הפרקים ננעלו מחדש");
-            }}
-          >
-            <i />
-          </button>
-        </Row>
-
         <Row t="גודל טקסט" d="התאמת גודל הגופן לנוחות הקריאה.">
           <div className="seg">
             {[["sm", "קטן"], ["md", "רגיל"], ["lg", "גדול"]].map(([k, label]) => (
@@ -59,9 +46,9 @@ export default function SettingsPage() {
           </div>
         </Row>
 
-        <Row t="מצב תצוגה" d="כהה או בהיר.">
+        <Row t="מצב תצוגה" d="בהיר (מומלץ ללמידה) או כהה.">
           <div className="seg">
-            {[["dark", "כהה"], ["light", "בהיר"]].map(([k, label]) => (
+            {[["light", "בהיר"], ["dark", "כהה"]].map(([k, label]) => (
               <button key={k} className={S.settings.theme === k ? "on" : ""} onClick={() => setSetting("theme", k)}>{label}</button>
             ))}
           </div>

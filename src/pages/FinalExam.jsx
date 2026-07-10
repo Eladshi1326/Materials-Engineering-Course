@@ -1,20 +1,24 @@
 import { useMemo, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CHAPTERS, FINAL_PASS } from "../data/index.js";
 import { QuizRunner, Results } from "../components/QuizRunner.jsx";
 import { examQuestions } from "../lib/questions.js";
-import { addXP, grantBadge, recordExam, allDone, getState } from "../lib/store.js";
+import { addXP, grantBadge, recordExam, allDone } from "../lib/store.js";
 
 export default function FinalExam() {
   const [res, setRes] = useState(null);
   const [round, setRound] = useState(0);
   const questions = useMemo(() => examQuestions(CHAPTERS, 50), [round]);
 
-  if (!allDone() && !getState().settings.free) return <Navigate to="/map" replace />;
-
   if (!res) {
     return (
-      <QuizRunner
+      <>
+        {!allDone() && (
+          <div className="notice mb">
+            מבחן ההסמכה מכסה את כל 22 הפרקים. עוד לא השלמת את כולם — אפשר לנסות, אבל התעודה שווה יותר אחרי שליטה מלאה.
+          </div>
+        )}
+        <QuizRunner
         key={round}
         questions={questions}
         xpPer={12}
@@ -28,7 +32,8 @@ export default function FinalExam() {
           if (pass) grantBadge("final");
           setRes({ ...r, xp, pass });
         }}
-      />
+        />
+      </>
     );
   }
 

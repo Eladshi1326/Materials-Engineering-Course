@@ -67,6 +67,7 @@ export default {
     {
       name: "קיבול חום",
       expr: "C = dQ / dT",
+      latex: "C = \\frac{dQ}{dT}",
       where: [
         { sym: "dQ", desc: "כמות אנרגיה (חום) שנספגה או שוחררה" },
         { sym: "dT", desc: "שינוי הטמפרטורה הנובע מכך" }
@@ -76,6 +77,7 @@ export default {
     {
       name: "תלות קיבול החום בטמפרטורה נמוכה",
       expr: "C_v = A × T³",
+      latex: "C_v = AT^{3}",
       where: [
         { sym: "A", desc: "קבוע שאינו תלוי בטמפרטורה" },
         { sym: "T", desc: "טמפרטורה מוחלטת (K)" }
@@ -85,6 +87,7 @@ export default {
     {
       name: "מקדם התפשטות תרמית ליניארי",
       expr: "(l_f − l₀) / l₀ = α_l × ΔT",
+      latex: "\\frac{l_f - l_0}{l_0} = \\alpha_l \\, \\Delta T",
       where: [
         { sym: "l₀, l_f", desc: "אורך התחלתי וסופי" },
         { sym: "α_l", desc: "מקדם ההתפשטות התרמית הליניארי (°C⁻¹)" }
@@ -94,6 +97,7 @@ export default {
     {
       name: "מקדם התפשטות תרמית נפחי",
       expr: "ΔV / V₀ = α_v × ΔT",
+      latex: "\\frac{\\Delta V}{V_0} = \\alpha_v \\, \\Delta T",
       where: [
         { sym: "V₀", desc: "נפח מקורי" },
         { sym: "α_v", desc: "מקדם ההתפשטות התרמית הנפחי" }
@@ -103,6 +107,7 @@ export default {
     {
       name: "מוליכות תרמית (חוק פוריה)",
       expr: "q = −k × (dT/dx)",
+      latex: "q = -k\\frac{dT}{dx}",
       where: [
         { sym: "q", desc: "שטף חום (W/m²)" },
         { sym: "k", desc: "מוליכות תרמית (W/m·K)" },
@@ -113,6 +118,7 @@ export default {
     {
       name: "מוליכות תרמית כוללת",
       expr: "k = k_l + k_e",
+      latex: "k = k_l + k_e",
       where: [
         { sym: "k_l", desc: "תרומת גלי הסריג (פונונים)" },
         { sym: "k_e", desc: "תרומת האלקטרונים החופשיים" }
@@ -122,6 +128,7 @@ export default {
     {
       name: "חוק וידמן-פרנץ",
       expr: "L = k / (σ × T)",
+      latex: "L = \\frac{k}{\\sigma T}",
       where: [
         { sym: "σ", desc: "מוליכות חשמלית" },
         { sym: "T", desc: "טמפרטורה מוחלטת" },
@@ -132,6 +139,7 @@ export default {
     {
       name: "מאמץ תרמי (התפשטות/התכווצות מוגבלת)",
       expr: "σ = E × α_l × (T₀ − T_f) = E × α_l × ΔT",
+      latex: "\\sigma = E \\alpha_l (T_0 - T_f) = E \\alpha_l \\, \\Delta T",
       where: [
         { sym: "E", desc: "מודול האלסטיות" },
         { sym: "T₀, T_f", desc: "טמפרטורה התחלתית וסופית" }
@@ -141,6 +149,7 @@ export default {
     {
       name: "פרמטר עמידות בפני הלם תרמי",
       expr: "TSR ≈ (σ_f × k) / (E × α_l)",
+      latex: "TSR \\approx \\frac{\\sigma_f k}{E \\alpha_l}",
       where: [
         { sym: "σ_f", desc: "חוזק השבר" },
         { sym: "k", desc: "מוליכות תרמית" }
@@ -150,6 +159,7 @@ export default {
     {
       name: "דיפוזיביות תרמית",
       expr: "D_T = k / (ρ × c_p)",
+      latex: "D_T = \\frac{k}{\\rho c_p}",
       where: [
         { sym: "ρ", desc: "צפיפות" },
         { sym: "c_p", desc: "חום סגולי בלחץ קבוע" }

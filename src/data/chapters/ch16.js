@@ -88,6 +88,7 @@ export default {
     {
       name: "כלל התערובות — גבול עליון (מודול אלסטיות)",
       expr: "E_upper = E_m·V_m + E_p·V_p",
+      latex: "E_c(u) = E_m V_m + E_p V_p",
       where: [
         {sym: "E_m, E_p", desc: "מודול אלסטיות של המטריצה והחלקיקים"},
         {sym: "V_m, V_p", desc: "שברי נפח של המטריצה והחלקיקים"}
@@ -97,6 +98,7 @@ export default {
     {
       name: "כלל התערובות — גבול תחתון (מודול אלסטיות)",
       expr: "E_lower = (E_m·E_p) / (V_m·E_p + V_p·E_m)",
+      latex: "E_c(l) = \\frac{E_m E_p}{V_m E_p + V_p E_m}",
       where: [
         {sym: "E_m, E_p", desc: "מודול אלסטיות של המטריצה והחלקיקים"},
         {sym: "V_m, V_p", desc: "שברי נפח"}
@@ -106,6 +108,7 @@ export default {
     {
       name: "אורך סיב קריטי",
       expr: "l_c = (σ*_f · d) / (2·τ_c)",
+      latex: "l_c = \\frac{\\sigma_f^{*} d}{2\\tau_c}",
       where: [
         {sym: "σ*_f", desc: "חוזק המתיחה (השבירה) של הסיב"},
         {sym: "d", desc: "קוטר הסיב"},
@@ -116,6 +119,7 @@ export default {
     {
       name: "מודול אורכי — מרוכב סיבים רציף ומיושר",
       expr: "E_cl = E_m·V_m + E_f·V_f",
+      latex: "E_{cl} = E_m V_m + E_f V_f",
       where: [
         {sym: "E_f", desc: "מודול אלסטיות של הסיב"},
         {sym: "V_f", desc: "שבר נפח הסיבים"}
@@ -125,6 +129,7 @@ export default {
     {
       name: "מודול רוחבי — מרוכב סיבים רציף ומיושר",
       expr: "E_ct = (E_m·E_f) / (V_m·E_f + V_f·E_m)",
+      latex: "E_{ct} = \\frac{E_m E_f}{V_m E_f + V_f E_m}",
       where: [
         {sym: "E_m, E_f", desc: "מודולים של מטריצה וסיב"},
         {sym: "V_m, V_f", desc: "שברי נפח"}
@@ -134,6 +139,7 @@ export default {
     {
       name: "יחס עומס סיב/מטריצה",
       expr: "F_f / F_m = (E_f·V_f) / (E_m·V_m)",
+      latex: "\\frac{F_f}{F_m} = \\frac{E_f V_f}{E_m V_m}",
       where: [
         {sym: "F_f, F_m", desc: "העומס הנישא על ידי הסיב ועל ידי המטריצה, בהתאמה"}
       ],
@@ -142,6 +148,7 @@ export default {
     {
       name: "חוזק אורכי — סיבים רציפים ומיושרים",
       expr: "σ*_cl = σ'_m·(1 - V_f) + σ*_f·V_f",
+      latex: "\\sigma_{cl}^{*} = \\sigma'_m (1 - V_f) + \\sigma_f^{*} V_f",
       where: [
         {sym: "σ'_m", desc: "מאמץ במטריצה ברגע שבירת הסיבים"},
         {sym: "σ*_f", desc: "חוזק מתיחה (שבירה) של הסיב"}
@@ -151,6 +158,7 @@ export default {
     {
       name: "חוזק אורכי — סיבים לא-רציפים ומיושרים, l > l_c",
       expr: "σ*_cd = σ*_f·V_f·(1 - l_c/(2l)) + σ'_m·(1 - V_f)",
+      latex: "\\sigma_{cd}^{*} = \\sigma_f^{*} V_f \\left(1 - \\frac{l_c}{2l}\\right) + \\sigma'_m (1 - V_f)",
       where: [
         {sym: "l", desc: "אורך הסיב בפועל"},
         {sym: "l_c", desc: "אורך הסיב הקריטי"}
@@ -160,6 +168,7 @@ export default {
     {
       name: "חוזק אורכי — סיבים לא-רציפים ומיושרים, l < l_c",
       expr: "σ*_cd' = (l·τ_c/d)·V_f + σ'_m·(1 - V_f)",
+      latex: "\\sigma_{cd}' = \\frac{l \\tau_c}{d} V_f + \\sigma'_m (1 - V_f)",
       where: [
         {sym: "τ_c", desc: "חוזק הקשר סיב-מטריצה"},
         {sym: "d", desc: "קוטר הסיב"}
@@ -169,6 +178,7 @@ export default {
     {
       name: "מודול אלסטיות — סיבים לא-רציפים ואקראיים",
       expr: "E_cd = K·E_f·V_f + E_m·V_m",
+      latex: "E_{cd} = K E_f V_f + E_m V_m",
       where: [
         {sym: "K", desc: "פרמטר יעילות סיב, בין 0.1 ל-0.6, תלוי ב-V_f וביחס E_f/E_m"}
       ],
@@ -177,6 +187,7 @@ export default {
     {
       name: "חוזק סגולי ומודול סגולי",
       expr: "S* = TS / ρ",
+      latex: "S^{*} = \\frac{TS}{\\rho}",
       where: [
         {sym: "TS", desc: "חוזק המתיחה"},
         {sym: "ρ", desc: "צפיפות (משקל סגולי)"}
@@ -186,6 +197,7 @@ export default {
     {
       name: "התעקמות באמצע קורה בכפיפת שלוש נקודות",
       expr: "Δy = F·L³ / (48·E·I)",
+      latex: "\\Delta y = \\frac{F L^{3}}{48 E I}",
       where: [
         {sym: "F", desc: "עומס מופעל"},
         {sym: "L", desc: "מרחק בין נקודות התמיכה"},
@@ -196,6 +208,7 @@ export default {
     {
       name: "מומנט אינרציה של חתך צינורי",
       expr: "I = (π/64)·(d_o⁴ - d_i⁴)",
+      latex: "I = \\frac{\\pi}{64} (d_o^{4} - d_i^{4})",
       where: [
         {sym: "d_o, d_i", desc: "קוטר חיצוני וקוטר פנימי של הצינור"}
       ],

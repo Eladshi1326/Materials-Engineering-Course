@@ -84,6 +84,7 @@ export default {
     {
       name: "הגדרת סולם הננו",
       expr: "1 nm = 10⁻⁹ m ; d < 100 nm",
+      latex: "1\\text{ nm} = 10^{-9}\\text{ m} \\qquad d < 100\\text{ nm}",
       where: [
         { sym: "d", desc: "הממד האופייני של המבנה או החלקיק" },
         { sym: "nm", desc: "ננומטר, יחידת אורך" }
@@ -101,6 +102,7 @@ export default {
     {
       name: "הגדרת תכונה כיחס תגובה-לגירוי",
       expr: "Response = f(Stimulus)",
+      latex: "\\text{Response} = f(\\text{Stimulus})",
       where: [
         { sym: "Stimulus", desc: "גירוי מוחל - כוח, שדה חשמלי, חום, שדה מגנטי, אור" },
         { sym: "Response", desc: "תגובת החומר - עיוות, זרם, שינוי טמפרטורה, מגנוט, שבירת אור" }

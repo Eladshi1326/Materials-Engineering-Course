@@ -95,6 +95,7 @@ export default {
     {
       name: "חוק אוהם",
       expr: "V = I·R",
+      latex: "V = IR",
       where: [
         {sym: "V", desc: "מתח (וולט)"},
         {sym: "I", desc: "זרם (אמפר)"},
@@ -105,6 +106,7 @@ export default {
     {
       name: "התנגדות סגולית",
       expr: "ρ = R·A / l",
+      latex: "\\rho = \\frac{RA}{l}",
       where: [
         {sym: "A", desc: "שטח חתך ניצב לזרם"},
         {sym: "l", desc: "מרחק בין נקודות המדידה"}
@@ -114,6 +116,7 @@ export default {
     {
       name: "מוליכות חשמלית",
       expr: "σ = 1 / ρ",
+      latex: "\\sigma = \\frac{1}{\\rho}",
       where: [
         {sym: "σ", desc: "מוליכות, ביחידות (Ω·m)⁻¹"}
       ],
@@ -122,6 +125,7 @@ export default {
     {
       name: "חוק אוהם בצפיפות זרם",
       expr: "J = σ·ℰ",
+      latex: "J = \\sigma\\mathcal{E}",
       where: [
         {sym: "J", desc: "צפיפות זרם (I/A)"},
         {sym: "ℰ", desc: "עוצמת שדה חשמלי (V/l)"}
@@ -131,6 +135,7 @@ export default {
     {
       name: "מוליכות ממספר אלקטרונים חופשיים",
       expr: "σ = n·|e|·μ_e",
+      latex: "\\sigma = n|e|\\mu_e",
       where: [
         {sym: "n", desc: "מספר אלקטרונים חופשיים ליחידת נפח"},
         {sym: "μ_e", desc: "ניידות אלקטרונים"}
@@ -140,6 +145,7 @@ export default {
     {
       name: "כלל מתיסן — התנגדות כוללת של מתכת",
       expr: "ρ_total = ρ_t + ρ_i + ρ_d",
+      latex: "\\rho_{total} = \\rho_t + \\rho_i + \\rho_d",
       where: [
         {sym: "ρ_t", desc: "תרומה תרמית"},
         {sym: "ρ_i", desc: "תרומת זיהומים"},
@@ -150,6 +156,7 @@ export default {
     {
       name: "מוליכות מוליך למחצה מהותי",
       expr: "σ = n_i · |e| · (μ_e + μ_h)",
+      latex: "\\sigma = n_i|e|(\\mu_e + \\mu_h)",
       where: [
         {sym: "n_i", desc: "ריכוז נושאי מטען מהותי (n=p=ni)"},
         {sym: "μ_h", desc: "ניידות חורים (תמיד קטנה מ-μe)"}
@@ -159,6 +166,7 @@ export default {
     {
       name: "מוליכות מוליך למחצה מסוג p",
       expr: "σ ≈ p·|e|·μ_h",
+      latex: "\\sigma \\approx p|e|\\mu_h",
       where: [
         {sym: "p", desc: "ריכוז חורים (≈ריכוז המקבלים כשכולם מיוננים)"}
       ],
@@ -167,6 +175,7 @@ export default {
     {
       name: "מהירות סחף אלקטרונים",
       expr: "v_d = μ_e · ℰ",
+      latex: "v_d = \\mu_e\\mathcal{E}",
       where: [
         {sym: "v_d", desc: "מהירות סחף (ממוצעת) בכיוון הכוח"}
       ],
@@ -175,6 +184,7 @@ export default {
     {
       name: "אפקט הול — מתח הול",
       expr: "V_H = R_H · I_x · B_z / d",
+      latex: "V_H = \\frac{R_H\\,I_x\\,B_z}{d}",
       where: [
         {sym: "R_H", desc: "מקדם הול"},
         {sym: "B_z", desc: "שדה מגנטי מופעל"},
@@ -185,6 +195,7 @@ export default {
     {
       name: "מקדם הול למתכות",
       expr: "R_H = -1 / (n·|e|)",
+      latex: "R_H = -\\frac{1}{n|e|}",
       where: [
         {sym: "n", desc: "ריכוז האלקטרונים החופשיים"}
       ],
@@ -193,6 +204,7 @@ export default {
     {
       name: "קיבול קבל לוחות מקבילים",
       expr: "C = ε · A / l",
+      latex: "C = \\frac{\\epsilon A}{l}",
       where: [
         {sym: "ε", desc: "פרמיטיביות החומר הדיאלקטרי בין הלוחות"},
         {sym: "A, l", desc: "שטח הלוחות ומרחק ביניהם"}
@@ -202,6 +214,7 @@ export default {
     {
       name: "קבוע דיאלקטרי (פרמיטיביות יחסית)",
       expr: "ε_r = ε / ε_0",
+      latex: "\\epsilon_r = \\frac{\\epsilon}{\\epsilon_0}",
       where: [
         {sym: "ε_r", desc: "קבוע דיאלקטרי, תמיד גדול מ-1"}
       ],
@@ -210,6 +223,7 @@ export default {
     {
       name: "מומנט דיפול חשמלי",
       expr: "p = q · d",
+      latex: "p = qd",
       where: [
         {sym: "q", desc: "גודל כל אחד ממטעני הדיפול"},
         {sym: "d", desc: "מרחק ההפרדה בין המטענים"}
@@ -219,6 +233,7 @@ export default {
     {
       name: "קיבול — הגדרה כללית",
       expr: "C = Q / V",
+      latex: "C = \\frac{Q}{V}",
       where: [
         {sym: "Q", desc: "מטען אגור על כל אחד מלוחות הקבל"},
         {sym: "V", desc: "מתח מופעל בין הלוחות"}

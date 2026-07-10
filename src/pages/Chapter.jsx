@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams, NavLink } from "react-router-dom";
 import { byId, PASS } from "../data/index.js";
-import { useStore, chap, chapterProgress, isUnlocked, isDone, markRead } from "../lib/store.js";
+import { useStore, chap, chapterProgress, isDone, markRead } from "../lib/store.js";
 import { Ring } from "../components/Bits.jsx";
 import { toast } from "../lib/ui.js";
+import { Fml, Sym, typesetProse } from "../lib/math.jsx";
 
 const TABS = [
   ["lesson", "השיעור"],
@@ -13,6 +14,13 @@ const TABS = [
   ["pitfalls", "טעויות נפוצות"],
   ["worked", "דוגמאות פתורות"]
 ];
+
+/* הזרקת HTML + שדרוג נוסחאות לרינדור ספר */
+function Prose({ html }) {
+  const ref = useRef(null);
+  useEffect(() => { typesetProse(ref.current); }, [html]);
+  return <div className="prose" ref={ref} dangerouslySetInnerHTML={{ __html: html }} />;
+}
 
 /* ------------------------------------------------------------------ section */
 function Section({ c, s, chId }) {
@@ -32,13 +40,15 @@ function Section({ c, s, chId }) {
 
       {open && (
         <div className="sec-body">
-          <div className="prose" dangerouslySetInnerHTML={{ __html: s.html }} />
+          <Prose html={s.html} />
           {s.analogy && <div className="analogy"><b>אנלוגיה:</b> {s.analogy}</div>}
 
           <div className="helpbar">
-            <button className="btn btn-sm btn-ghost" onClick={() => setSimple((v) => !v)}>
-              {simple ? "סגור הסבר" : "🤔 עדיין לא הבנתי — הסבר אחרת"}
-            </button>
+            {s.simple && (
+              <button className="btn btn-sm btn-ghost" onClick={() => setSimple((v) => !v)}>
+                {simple ? "סגור הסבר" : "🤔 עדיין לא הבנתי — הסבר אחרת"}
+              </button>
+            )}
             {!read && (
               <button
                 className="btn btn-sm"
@@ -52,10 +62,10 @@ function Section({ c, s, chId }) {
             )}
           </div>
 
-          {simple && (
+          {simple && s.simple && (
             <div className="simple-box">
               <div className="lbl">בפשטות</div>
-              <div className="prose" dangerouslySetInnerHTML={{ __html: s.simple }} />
+              <Prose html={s.simple} />
             </div>
           )}
         </div>
@@ -82,11 +92,11 @@ const Formulas = ({ c }) => (
     {c.formulas.map((f, i) => (
       <div className="fcard" key={i}>
         <div className="nm">{f.name}</div>
-        <div className="fml" dir="ltr">{f.expr}</div>
+        <Fml tex={f.latex} plain={f.expr} />
         {f.where?.length > 0 && (
           <div className="where">
             {f.where.map((w, k) => (
-              <div key={k}><span className="s" dir="ltr">{w.sym}</span><span className="d">{w.desc}</span></div>
+              <div key={k}><Sym>{w.sym}</Sym><span className="d">{w.desc}</span></div>
             ))}
           </div>
         )}
@@ -170,28 +180,13 @@ export default function Chapter() {
 
   if (!c) return <div className="empty">הפרק לא נמצא.</div>;
 
-  if (!isUnlocked(chId)) {
-    return (
-      <>
-        <div className="lock-note">
-          🔒
-          <div>
-            <b>הפרק נעול.</b>
-            <div className="tiny">כדי להיכנס לפרק {chId}, עבור קודם את מבחן פרק {chId - 1} בציון {PASS} לפחות.</div>
-          </div>
-        </div>
-        <Link className="btn btn-primary" to={`/ch/${chId - 1}`}>אל פרק {chId - 1}</Link>{" "}
-        <Link className="btn" to="/map">חזרה למסלול</Link>
-      </>
-    );
-  }
-
   const p = chap(chId);
   const prog = chapterProgress(chId);
   const done = isDone(chId);
   const prev = byId(chId - 1);
   const next = byId(chId + 1);
   const chal = c.challenge?.length ? c.challenge : c.quiz.filter((q) => q.level === "hard");
+  const hasDrill = c.formulas.length >= 4;
 
   return (
     <>
@@ -232,21 +227,33 @@ export default function Chapter() {
         <Link className="act hero-act" to={`/ch/${chId}/play/quiz`}>
           <span className="ico">◎</span>
           <span className="t">מבחן הפרק</span>
-          <span className="d">14 שאלות · ציון מעבר {PASS} · פותח את הפרק הבא</span>
+          <span className="d">14 שאלות · ציון מעבר {PASS} · עם רמזים והסברים</span>
           {p.quizBest > 0 && <span className="best">שיא: {p.quizBest}% ({p.attempts} נסיונות)</span>}
         </Link>
-        <Link className="act" to={`/ch/${chId}/play/cards`}>
-          <span className="ico">▤</span>
-          <span className="t">כרטיסיות</span>
-          <span className="d">{c.flashcards.length} כרטיסים לשינון מהיר</span>
-          {p.cards && <span className="best">✓ הושלם</span>}
-        </Link>
-        <Link className="act" to={`/ch/${chId}/play/match`}>
-          <span className="ico">⇄</span>
-          <span className="t">משחק התאמה</span>
-          <span className="d">{c.matching.length} זוגות · נגד השעון</span>
-          {p.match > 0 && <span className="best">שיא: {p.match} נק׳</span>}
-        </Link>
+        {c.flashcards.length > 0 && (
+          <Link className="act" to={`/ch/${chId}/play/cards`}>
+            <span className="ico">▤</span>
+            <span className="t">כרטיסיות</span>
+            <span className="d">{c.flashcards.length} כרטיסים לשינון מהיר</span>
+            {p.cards && <span className="best">✓ הושלם</span>}
+          </Link>
+        )}
+        {c.matching.length > 0 && (
+          <Link className="act" to={`/ch/${chId}/play/match`}>
+            <span className="ico">⇄</span>
+            <span className="t">משחק התאמה</span>
+            <span className="d">{Math.min(10, c.matching.length)} זוגות · רצפים מזכים בבונוס</span>
+            {p.match > 0 && <span className="best">שיא: {p.match} נק׳</span>}
+          </Link>
+        )}
+        {hasDrill && (
+          <Link className="act" to={`/ch/${chId}/play/formula`}>
+            <span className="ico">ƒ</span>
+            <span className="t">שליטה בנוסחאות</span>
+            <span className="d">{c.formulas.length} נוסחאות · זהה, התאם וזכור</span>
+            {p.fdrill > 0 && <span className="best">שיא: {p.fdrill} נק׳</span>}
+          </Link>
+        )}
         {chal.length > 0 && (
           <Link className="act" to={`/ch/${chId}/play/challenge`}>
             <span className="ico">⚡</span>
@@ -282,9 +289,13 @@ export default function Chapter() {
       <div className="row wrap mt2" style={{ gap: 10 }}>
         {prev && <Link className="btn" to={`/ch/${prev.id}`}>→ פרק {prev.id}</Link>}
         <div className="spacer" />
-        {next && (done
-          ? <Link className="btn btn-primary" to={`/ch/${next.id}`}>פרק {next.id}: {next.title} ←</Link>
-          : <button className="btn" disabled title="עבור את מבחן הפרק כדי להמשיך">🔒 פרק {next.id} נעול</button>
+        {next && (
+          <div style={{ textAlign: "end" }}>
+            <Link className={"btn" + (done ? " btn-primary" : "")} to={`/ch/${next.id}`}>
+              פרק {next.id}: {next.title} ←
+            </Link>
+            {!done && <div className="tiny" style={{ marginTop: 6 }}>מומלץ לעבור קודם את מבחן הפרק ({PASS}+)</div>}
+          </div>
         )}
       </div>
     </>

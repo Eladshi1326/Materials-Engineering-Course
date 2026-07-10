@@ -88,6 +88,7 @@ export default {
     {
       name: "תגובת חמצון כללית",
       expr: "M → Mⁿ⁺ + n·e⁻",
+      latex: "\\mathrm{M} \\;\\rightarrow\\; \\mathrm{M}^{n+} + n e^{-}",
       where: [
         {sym: "M", desc: "אטום מתכת ניטרלי"},
         {sym: "n", desc: "ערכיות המתכת (מספר אלקטרוני הערכיות)"}
@@ -97,6 +98,7 @@ export default {
     {
       name: "תגובת חיזור של יוני מימן",
       expr: "2H⁺ + 2e⁻ → H₂",
+      latex: "2\\mathrm{H}^{+} + 2e^{-} \\;\\rightarrow\\; \\mathrm{H}_2",
       where: [
         {sym: "H⁺", desc: "יון מימן בתמיסה חומצית"}
       ],
@@ -105,6 +107,7 @@ export default {
     {
       name: "פוטנציאל תא — שני תאים סטנדרטיים",
       expr: "ΔV° = V°₂ − V°₁",
+      latex: "\\Delta V^{\\circ} = V_2^{\\circ} - V_1^{\\circ}",
       where: [
         {sym: "V°₁", desc: "פוטנציאל המתכת המתחמצנת (עם סימן הפוך מהטבלה)"},
         {sym: "V°₂", desc: "פוטנציאל המתכת המתחזרת"}
@@ -114,6 +117,7 @@ export default {
     {
       name: "משוואת נרנסט (כללית)",
       expr: "ΔV = (V°₂ − V°₁) − (RT/nf)·ln([M₁ⁿ⁺]/[M₂ⁿ⁺])",
+      latex: "\\Delta V = (V_2^{\\circ} - V_1^{\\circ}) - \\frac{RT}{nf}\\ln\\frac{[\\mathrm{M}_1^{n+}]}{[\\mathrm{M}_2^{n+}]}",
       where: [
         {sym: "R", desc: "קבוע הגזים"},
         {sym: "T", desc: "טמפרטורה מוחלטת (K)"},
@@ -124,6 +128,7 @@ export default {
     {
       name: "משוואת נרנסט בטמפרטורת החדר",
       expr: "ΔV = (V°₂ − V°₁) − (0.0592/n)·log([M₁ⁿ⁺]/[M₂ⁿ⁺])",
+      latex: "\\Delta V = (V_2^{\\circ} - V_1^{\\circ}) - \\frac{0.0592}{n}\\log\\frac{[\\mathrm{M}_1^{n+}]}{[\\mathrm{M}_2^{n+}]}",
       where: [
         {sym: "n", desc: "מספר אלקטרונים בכל חצי-תגובה"}
       ],
@@ -132,6 +137,7 @@ export default {
     {
       name: "קצב חדירת קורוזיה (CPR)",
       expr: "CPR = K·W / (ρ·A·t)",
+      latex: "\\mathrm{CPR} = \\frac{KW}{\\rho A t}",
       where: [
         {sym: "W", desc: "אובדן משקל לאחר זמן חשיפה t"},
         {sym: "ρ, A", desc: "צפיפות ושטח המדגם החשוף"},
@@ -142,6 +148,7 @@ export default {
     {
       name: "קצב קורוזיה מצפיפות זרם",
       expr: "r = i / (n·f)",
+      latex: "r = \\frac{i}{nf}",
       where: [
         {sym: "i", desc: "צפיפות זרם [A/cm²]"},
         {sym: "n", desc: "מספר אלקטרונים בייונון אטום מתכת אחד"}
@@ -151,6 +158,7 @@ export default {
     {
       name: "פוליריזציית הפעלה",
       expr: "η_a = ±β·log(i / i₀)",
+      latex: "\\eta_a = \\pm\\beta \\log\\frac{i}{i_0}",
       where: [
         {sym: "η_a", desc: "מתח יתר (overvoltage)"},
         {sym: "i₀", desc: "צפיפות זרם החליפין בשיווי משקל"}
@@ -160,6 +168,7 @@ export default {
     {
       name: "פוליריזציית ריכוז",
       expr: "η_c = (2.3RT/nf)·log(1 − i/i_L)",
+      latex: "\\eta_c = \\frac{2.3RT}{nf}\\log\\left(1 - \\frac{i}{i_L}\\right)",
       where: [
         {sym: "i_L", desc: "צפיפות זרם גבולית (מרבית) של הדיפוזיה"}
       ],
@@ -168,6 +177,7 @@ export default {
     {
       name: "יחס פילינג-בדוורת'",
       expr: "P-B = (A_O·ρ_M) / (A_M·ρ_O)",
+      latex: "\\text{P-B} = \\frac{A_O \\rho_M}{A_M \\rho_O}",
       where: [
         {sym: "A_O, A_M", desc: "משקל נוסחה של התחמוצת ומשקל אטומי של המתכת"},
         {sym: "ρ_O, ρ_M", desc: "צפיפות התחמוצת וצפיפות המתכת"}
@@ -177,6 +187,7 @@ export default {
     {
       name: "חוק קצב פרבולי לחמצון",
       expr: "W² = K₁t + K₂",
+      latex: "W^{2} = K_1 t + K_2",
       where: [
         {sym: "W", desc: "עלייה במשקל ליחידת שטח"},
         {sym: "K₁, K₂", desc: "קבועים בלתי-תלויי-זמן בטמפרטורה נתונה"}
@@ -186,6 +197,7 @@ export default {
     {
       name: "חוק קצב ליניארי לחמצון",
       expr: "W = K₃t",
+      latex: "W = K_3 t",
       where: [
         {sym: "K₃", desc: "קבוע התלוי בטמפרטורה"}
       ],
@@ -194,6 +206,7 @@ export default {
     {
       name: "חוק קצב לוגריתמי לחמצון",
       expr: "W = K₄·log(K₅t + K₆)",
+      latex: "W = K_4 \\log(K_5 t + K_6)",
       where: [
         {sym: "K₄, K₅, K₆", desc: "קבועים אמפיריים"}
       ],

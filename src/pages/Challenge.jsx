@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { byId } from "../data/index.js";
 import { QuizRunner, Results } from "../components/QuizRunner.jsx";
 import { chapterChallenge } from "../lib/questions.js";
-import { addXP, grantBadge, recordChallenge, chap, isUnlocked } from "../lib/store.js";
+import { addXP, grantBadge, recordChallenge, chap } from "../lib/store.js";
 
 export default function Challenge() {
   const { id } = useParams();
@@ -13,7 +13,7 @@ export default function Challenge() {
   const [round, setRound] = useState(0);
   const questions = useMemo(() => (c ? chapterChallenge(c) : []), [c, round]);
 
-  if (!c || !isUnlocked(chId)) return <div className="empty">לא זמין. <Link to="/map">חזרה למסלול</Link></div>;
+  if (!c) return <div className="empty">הפרק לא נמצא. <Link to="/map">חזרה למסלול</Link></div>;
   if (!questions.length) return <div className="empty">אין שאלות אתגר בפרק זה.</div>;
 
   if (!res) {

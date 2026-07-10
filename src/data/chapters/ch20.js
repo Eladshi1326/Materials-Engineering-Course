@@ -95,6 +95,7 @@ export default {
     {
       name: "עוצמת שדה מגנטי בסליל",
       expr: "H = N × I / l",
+      latex: "H = \\frac{NI}{l}",
       where: [
         { sym: "N", desc: "מספר כריכות הסליל" },
         { sym: "I", desc: "עוצמת הזרם" },
@@ -105,6 +106,7 @@ export default {
     {
       name: "צפיפות שטף מגנטי בחומר",
       expr: "B = μ × H",
+      latex: "B = \\mu H",
       where: [
         { sym: "μ", desc: "המוליכות המגנטית של החומר" }
       ],
@@ -113,6 +115,7 @@ export default {
     {
       name: "צפיפות שטף מגנטי בריק",
       expr: "B₀ = μ₀ × H",
+      latex: "B_0 = \\mu_0 H",
       where: [
         { sym: "μ₀", desc: "מוליכות הריק, 4π×10⁻⁷ H/m" }
       ],
@@ -121,6 +124,7 @@ export default {
     {
       name: "מוליכות מגנטית יחסית",
       expr: "μr = μ / μ₀",
+      latex: "\\mu_r = \\frac{\\mu}{\\mu_0}",
       where: [
         { sym: "μr", desc: "מוליכות יחסית, חסרת יחידות" }
       ],
@@ -129,6 +133,7 @@ export default {
     {
       name: "צפיפות שטף מגנטי דרך המגנטיזציה",
       expr: "B = μ₀ × H + μ₀ × M",
+      latex: "B = \\mu_0 H + \\mu_0 M",
       where: [
         { sym: "M", desc: "מגנטיזציית החומר" }
       ],
@@ -137,6 +142,7 @@ export default {
     {
       name: "מגנטיזציה",
       expr: "M = χm × H",
+      latex: "M = \\chi_m H",
       where: [
         { sym: "χm", desc: "הרגישות המגנטית, חסרת יחידות" }
       ],
@@ -145,18 +151,21 @@ export default {
     {
       name: "קשר בין רגישות למוליכות יחסית",
       expr: "χm = μr − 1",
+      latex: "\\chi_m = \\mu_r - 1",
       where: [],
       note: "מקשר בין שני המדדים המרכזיים לתיאור תגובת חומר לשדה."
     },
     {
       name: "צפיפות שטף לחומר פרומגנטי/פרימגנטי",
       expr: "B ≈ μ₀ × M",
+      latex: "B \\approx \\mu_0 M",
       where: [],
       note: "קירוב טוב כי H≪M בחומרים אלה."
     },
     {
       name: "מגנטיזציית רוויה (לפי מומנט אטומי)",
       expr: "Ms = n̄ × μB × N",
+      latex: "M_s = \\bar{n} \\mu_B N",
       where: [
         { sym: "n̄", desc: "מספר מגנטוני בוהר נטו לאטום" },
         { sym: "N", desc: "מספר אטומים ליחידת נפח" }
@@ -166,6 +175,7 @@ export default {
     {
       name: "מספר אטומים ליחידת נפח",
       expr: "N = ρ × NA / A",
+      latex: "N = \\frac{\\rho N_A}{A}",
       where: [
         { sym: "ρ", desc: "צפיפות" },
         { sym: "A", desc: "משקל אטומי" }
@@ -175,6 +185,7 @@ export default {
     {
       name: "מגנטיזציית רוויה לחומר פרימגנטי",
       expr: "Ms = N × μB",
+      latex: "M_s = N \\mu_B",
       where: [
         { sym: "N", desc: "N=nB/Vc, מגנטוני בוהר ליחידת נפח" }
       ],
@@ -183,6 +194,7 @@ export default {
     {
       name: "שדה קריטי כתלות בטמפרטורה",
       expr: "HC(T) = HC(0) × [1 − (T/TC)²]",
+      latex: "H_C(T) = H_C(0)\\left[1 - \\left(\\frac{T}{T_C}\\right)^{2}\\right]",
       where: [
         { sym: "HC(0)", desc: "שדה קריטי ב-0K" },
         { sym: "TC", desc: "טמפרטורה קריטית" }

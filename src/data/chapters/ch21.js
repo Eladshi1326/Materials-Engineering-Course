@@ -95,6 +95,7 @@ export default {
     {
       name: "מהירות האור בריק וקשר לתדירות",
       expr: "c = λ × v",
+      latex: "c = \\lambda \\nu",
       where: [
         { sym: "λ", desc: "אורך הגל" },
         { sym: "v", desc: "התדירות" }
@@ -104,6 +105,7 @@ export default {
     {
       name: "אנרגיית פוטון",
       expr: "E = h × v = h × c / λ",
+      latex: "E = h\\nu = \\frac{hc}{\\lambda}",
       where: [
         { sym: "h", desc: "קבוע פלאנק, 6.63×10⁻³⁴ J·s" }
       ],
@@ -112,6 +114,7 @@ export default {
     {
       name: "מאזן שידור-קליטה-החזרה",
       expr: "T + A + R = 1",
+      latex: "T + A + R = 1",
       where: [
         { sym: "T, A, R", desc: "שברי שידור, קליטה והחזרה" }
       ],
@@ -120,12 +123,14 @@ export default {
     {
       name: "אנרגיית מעבר אלקטרוני",
       expr: "ΔE = h × v",
+      latex: "\\Delta E = h\\nu",
       where: [],
       note: "רק פוטונים בתדירות מתאימה בדיוק נספגים."
     },
     {
       name: "אינדקס שבירה",
       expr: "n = c / v",
+      latex: "n = \\frac{c}{v}",
       where: [
         { sym: "v", desc: "מהירות האור במדיום" }
       ],
@@ -134,6 +139,7 @@ export default {
     {
       name: "אינדקס שבירה ומקדם דיאלקטרי",
       expr: "n ≈ √εr",
+      latex: "n \\approx \\sqrt{\\epsilon_r}",
       where: [
         { sym: "εr", desc: "המקדם הדיאלקטרי (קבוע הדיאלקטריות)" }
       ],
@@ -142,6 +148,7 @@ export default {
     {
       name: "ריפלקטיביות בין שני מדיומים",
       expr: "R = [(n₂ − n₁) / (n₂ + n₁)]²",
+      latex: "R = \\left(\\frac{n_2 - n_1}{n_2 + n_1}\\right)^{2}",
       where: [
         { sym: "n₁, n₂", desc: "אינדקסי השבירה של שני המדיומים" }
       ],
@@ -150,6 +157,7 @@ export default {
     {
       name: "ריפלקטיביות מריק/אוויר לתוך מוצק",
       expr: "R = [(ns − 1) / (ns + 1)]²",
+      latex: "R = \\left(\\frac{n_s - 1}{n_s + 1}\\right)^{2}",
       where: [
         { sym: "ns", desc: "אינדקס השבירה של המוצק" }
       ],
@@ -158,6 +166,7 @@ export default {
     {
       name: "תנאי קליטה בחומר לא-מתכתי",
       expr: "h × v > Eg",
+      latex: "h\\nu > E_g",
       where: [
         { sym: "Eg", desc: "פער האנרגיה" }
       ],
@@ -166,6 +175,7 @@ export default {
     {
       name: "פער אנרגיה מרבי לקליטת אור נראה",
       expr: "Eg(max) = h × c / λ(min)",
+      latex: "E_g(\\text{max}) = \\frac{hc}{\\lambda(\\text{min})}",
       where: [
         { sym: "λ(min)", desc: "כ-0.4 מיקרומטר" }
       ],
@@ -174,6 +184,7 @@ export default {
     {
       name: "עוצמת קרינה מועברת (קליטה בלבד)",
       expr: "IT = I₀ × e^(−β×x)",
+      latex: "I_T = I_0 \\exp(-\\beta x)",
       where: [
         { sym: "β", desc: "מקדם הקליטה" },
         { sym: "x", desc: "מרחק שהאור עובר בחומר" }
@@ -183,6 +194,7 @@ export default {
     {
       name: "עוצמת קרינה מועברת (כולל החזרה)",
       expr: "IT = I₀ × (1 − R)² × e^(−β×l)",
+      latex: "I_T = I_0 (1 - R)^{2} \\exp(-\\beta l)",
       where: [
         { sym: "l", desc: "עובי החומר" }
       ],
@@ -191,6 +203,7 @@ export default {
     {
       name: "אורך גל לייזר מוליך למחצה",
       expr: "λ = h × c / Eg",
+      latex: "\\lambda = \\frac{hc}{E_g}",
       where: [],
       note: "חייב לחול בטווח הנראה/קרוב-אינפרא-אדום ליישומי לייזר."
     }

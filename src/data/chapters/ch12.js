@@ -97,6 +97,7 @@ export default {
     {
       name: "צפיפות קרמית תיאורטית",
       expr: "ρ = n׳(ΣAC + ΣAA) / (VC NA)",
+      latex: "\\rho = \\frac{n'(\\sum A_C + \\sum A_A)}{V_C N_A}",
       where: [
         { sym: "n׳", desc: "מספר יחידות הפורמולה בתא היחידה" },
         { sym: "ΣAC, ΣAA", desc: "סכום המשקלים האטומיים של הקטיונים והאניונים ביחידת פורמולה" },
@@ -108,6 +109,7 @@ export default {
     {
       name: "חוזק כפיפה - חתך מלבני",
       expr: "σfs = 3FfL / (2bd²)",
+      latex: "\\sigma_{fs} = \\frac{3 F_f L}{2 b d^2}",
       where: [
         { sym: "Ff", desc: "כוח השבר" },
         { sym: "L", desc: "מרחק בין נקודות התמיכה" },
@@ -118,6 +120,7 @@ export default {
     {
       name: "חוזק כפיפה - חתך עגול",
       expr: "σfs = FfL / (πR³)",
+      latex: "\\sigma_{fs} = \\frac{F_f L}{\\pi R^3}",
       where: [
         { sym: "R", desc: "רדיוס המוט" }
       ],
@@ -126,6 +129,7 @@ export default {
     {
       name: "מודולוס אלסטיות מכפיפה (חתך מלבני)",
       expr: "E = FL³ / (4bd³Δy)",
+      latex: "E = \\frac{F L^3}{4 b d^3 \\Delta y}",
       where: [
         { sym: "Δy", desc: "הסטייה (deflection) המתאימה לכוח F" }
       ],
@@ -134,6 +138,7 @@ export default {
     {
       name: "מודולוס אלסטיות ונקבוביות",
       expr: "E = E0(1 − 1.9P + 0.9P²)",
+      latex: "E = E_0(1 - 1.9P + 0.9P^2)",
       where: [
         { sym: "E0", desc: "מודולוס האלסטיות ללא נקבוביות" },
         { sym: "P", desc: "שבר הנפח הנקבובי" }
@@ -143,6 +148,7 @@ export default {
     {
       name: "חוזק כפיפה ונקבוביות",
       expr: "σfs = σ0 exp(−nP)",
+      latex: "\\sigma_{fs} = \\sigma_0 \\exp(-nP)",
       where: [
         { sym: "σ0, n", desc: "קבועים ניסיוניים התלויים בחומר" }
       ],

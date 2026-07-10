@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { byId, PASS } from "../data/index.js";
 import { QuizRunner, Results } from "../components/QuizRunner.jsx";
 import { pickChapterQuiz } from "../lib/questions.js";
-import { addXP, grantBadge, recordQuiz, isUnlocked } from "../lib/store.js";
+import { addXP, grantBadge, recordQuiz } from "../lib/store.js";
 
 export default function ChapterQuiz() {
   const { id } = useParams();
@@ -14,7 +14,6 @@ export default function ChapterQuiz() {
   const questions = useMemo(() => (c ? pickChapterQuiz(c) : []), [c, round]);
 
   if (!c) return <div className="empty">הפרק לא נמצא.</div>;
-  if (!isUnlocked(chId)) return <div className="empty">הפרק נעול. <Link to="/map">חזרה למסלול</Link></div>;
 
   if (!res) {
     return (
@@ -47,11 +46,11 @@ export default function ChapterQuiz() {
       failTitle={`עוד לא — צריך ${PASS}%`}
       msg={
         res.pass
-          ? (next ? `פרק ${next.id} נפתח עבורך. המשך כך.` : "השלמת את כל הפרקים — מבחן ההסמכה מחכה.")
+          ? (next ? `שלטת בחומר של פרק ${chId}. ממשיכים לפרק ${next.id}.` : "השלמת את כל הפרקים — מבחן ההסמכה מחכה.")
           : 'חזור על הסעיפים החלשים, ולחץ על "עדיין לא הבנתי" בכל סעיף שלא ברור. אחר כך נסה שוב.'
       }
     >
-      {res.pass && next && <Link className="btn btn-primary" to={`/ch/${next.id}`}>פרק {next.id} נפתח! ←</Link>}
+      {res.pass && next && <Link className="btn btn-primary" to={`/ch/${next.id}`}>לפרק {next.id} ←</Link>}
       {res.pass && !next && <Link className="btn btn-primary" to="/map">סיימת את הפרק האחרון ★</Link>}
       <Link className="btn" to={`/ch/${chId}`}>חזרה לפרק</Link>
       <button className="btn" onClick={() => { setRes(null); setRound((r) => r + 1); }}>נסה שוב</button>

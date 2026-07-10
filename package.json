@@ -1,7 +1,7 @@
 {
   "name": "materials-engineering-course",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "description": "קורס אינטראקטיבי בעברית למדע והנדסת חומרים (Callister, 9th ed.)",
   "scripts": {
@@ -11,6 +11,7 @@
     "check": "node scripts/validate-content.mjs"
   },
   "dependencies": {
+    "katex": "^0.16.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2"

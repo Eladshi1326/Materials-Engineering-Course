@@ -1,0 +1,19 @@
+# ספר המקור — לא מעלים לריפו (זכויות יוצרים + גודל)
+*.pdf
+book.txt
+
+# תלויות ותוצרי build
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+
+# מערכת
+.DS_Store
+Thumbs.db
+desktop.ini
+.netlify/
+.vscode/
+.idea/
+npm-debug.log*

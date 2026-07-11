@@ -8,16 +8,14 @@ import Dashboard from "./pages/Dashboard.jsx";
 import MapPage from "./pages/MapPage.jsx";
 import Chapter from "./pages/Chapter.jsx";
 import ChapterQuiz from "./pages/ChapterQuiz.jsx";
-import Challenge from "./pages/Challenge.jsx";
+import Practice from "./pages/Practice.jsx";
 import Flashcards from "./pages/Flashcards.jsx";
-import Matching from "./pages/Matching.jsx";
 import FormulaDrill from "./pages/FormulaDrill.jsx";
 import UnitExam from "./pages/UnitExam.jsx";
 import FinalExam from "./pages/FinalExam.jsx";
 import Glossary from "./pages/Glossary.jsx";
 import Achievements from "./pages/Achievements.jsx";
 import SettingsPage from "./pages/Settings.jsx";
-import Certificate from "./pages/Certificate.jsx";
 
 /* גלילה לראש הדף רק במעבר לעמוד חדש באמת —
    מעבר בין לשוניות של אותו פרק לא מזיז את הגלילה */
@@ -49,15 +47,13 @@ export default function App() {
           <Route path="/ch/:id/:tab" element={<Chapter />} />
           <Route path="/ch/:id/play/quiz" element={<ChapterQuiz />} />
           <Route path="/ch/:id/play/cards" element={<Flashcards />} />
-          <Route path="/ch/:id/play/match" element={<Matching />} />
+          <Route path="/ch/:id/play/practice" element={<Practice />} />
           <Route path="/ch/:id/play/formula" element={<FormulaDrill />} />
-          <Route path="/ch/:id/play/challenge" element={<Challenge />} />
           <Route path="/exam/unit/:uid" element={<UnitExam />} />
           <Route path="/exam/final" element={<FinalExam />} />
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/certificate" element={<Certificate />} />
           <Route path="*" element={<div className="empty">הדף לא נמצא. <Link to="/">חזרה ללוח הבקרה</Link></div>} />
         </Routes>
       </main>

@@ -21,10 +21,57 @@ import ch20 from "./chapters/ch20.js";
 import ch21 from "./chapters/ch21.js";
 import ch22 from "./chapters/ch22.js";
 
+import x01 from "./extras/ch01.js";
+import x02 from "./extras/ch02.js";
+import x03 from "./extras/ch03.js";
+import x04 from "./extras/ch04.js";
+import x05 from "./extras/ch05.js";
+import x06 from "./extras/ch06.js";
+import x07 from "./extras/ch07.js";
+import x08 from "./extras/ch08.js";
+import x09 from "./extras/ch09.js";
+import x10 from "./extras/ch10.js";
+import x11 from "./extras/ch11.js";
+import x12 from "./extras/ch12.js";
+import x13 from "./extras/ch13.js";
+import x14 from "./extras/ch14.js";
+import x15 from "./extras/ch15.js";
+import x16 from "./extras/ch16.js";
+import x17 from "./extras/ch17.js";
+import x18 from "./extras/ch18.js";
+import x19 from "./extras/ch19.js";
+import x20 from "./extras/ch20.js";
+import x21 from "./extras/ch21.js";
+import x22 from "./extras/ch22.js";
+
+const EXTRAS = {
+  1: x01, 2: x02, 3: x03, 4: x04, 5: x05, 6: x06, 7: x07, 8: x08, 9: x09, 10: x10, 11: x11,
+  12: x12, 13: x13, 14: x14, 15: x15, 16: x16, 17: x17, 18: x18, 19: x19, 20: x20, 21: x21, 22: x22
+};
+
+/* מיזוג תוספות לפרק:
+   - rebalance: מסיחים משוכתבים (איזון אורך התשובות) לפי טקסט השאלה
+   - examExtra: שאלות חדשות (בעיקר חישוביות) שמצטרפות למאגר המבחן
+   - practice:  שאלות לתרגול המדורג בלבד — לא מופיעות במבחן */
+function withExtras(c) {
+  const x = EXTRAS[c.id] || {};
+  const map = new Map((x.rebalance || []).map((o) => [o.q, o]));
+  const fix = (arr) => arr.map((q) => {
+    const o = map.get(q.q);
+    return o ? { ...q, options: o.options, answer: o.answer } : q;
+  });
+  return {
+    ...c,
+    quiz: [...fix(c.quiz), ...(x.examExtra || [])],
+    challenge: fix(c.challenge || []),
+    practice: x.practice || []
+  };
+}
+
 export const CHAPTERS = [
   ch01, ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch11,
   ch12, ch13, ch14, ch15, ch16, ch17, ch18, ch19, ch20, ch21, ch22
-].sort((a, b) => a.id - b.id);
+].map(withExtras).sort((a, b) => a.id - b.id);
 
 export const byId = (id) => CHAPTERS.find((c) => c.id === Number(id));
 
@@ -54,8 +101,8 @@ export const BADGES = [
   { id: "q500", ic: "∞", t: "חמש מאות", d: "ענית על 500 שאלות" },
   { id: "streak7", ic: "🜄", t: "שבוע ברצף", d: "7 ימי לימוד רצופים" },
   { id: "cards", ic: "▤", t: "כרטיסן", d: "סיימת חפיסת כרטיסיות מלאה" },
-  { id: "match", ic: "⇄", t: "מתאים מושלם", d: "משחק התאמה ללא טעויות" },
-  { id: "speed", ic: "⚡", t: "מהיר ומדויק", d: "אתגר מהיר מושלם, בלי לאבד חיים" },
+  { id: "match", ic: "⟡", t: "מתרגל מדורג", d: "תרגול מדורג בציון 80 ומעלה" },
+  { id: "speed", ic: "∫", t: "שליטה מלאה", d: "תרגול מדורג מושלם — 100%" },
   { id: "unit1", ic: "①", t: "יסודות המבנה", d: "עברת את מבחן יחידה 1" },
   { id: "unit2", ic: "②", t: "התנהגות מכנית", d: "עברת את מבחן יחידה 2" },
   { id: "unit3", ic: "③", t: "פאזות והתמרות", d: "עברת את מבחן יחידה 3" },
@@ -63,7 +110,7 @@ export const BADGES = [
   { id: "unit5", ic: "⑤", t: "תכונות פיזיקליות", d: "עברת את מבחן יחידה 5" },
   { id: "half", ic: "◐", t: "חצי הדרך", d: "11 פרקים הושלמו" },
   { id: "all", ic: "⬢", t: "כל הפרקים", d: "22 פרקים הושלמו" },
-  { id: "final", ic: "★", t: "מוסמך חומרים", d: "עברת את מבחן ההסמכה" }
+  { id: "final", ic: "★", t: "מומחה חומרים", d: "עברת את המבחן המסכם על כל הספר" }
 ];
 
 export const PASS = 75;

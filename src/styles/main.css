@@ -466,6 +466,17 @@ a.sumitem:hover{border-color:var(--acc);background:var(--panel-2)}
 .txt-in{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--txt);font:inherit;outline:none;max-width:220px}
 .txt-in:focus{border-color:var(--acc)}
 
+/* ============================ figures ============================ */
+.fig{margin:18px auto;max-width:660px;padding:14px 14px 10px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2)}
+.fig svg{width:100%;height:auto;display:block}
+.fig svg text{font-family:var(--sans)}
+.fig figcaption{font-size:.8rem;color:var(--txt-dim);text-align:center;margin-top:8px;line-height:1.6}
+
+/* soft lock */
+.ch.soft-locked{opacity:.72}
+.ch.soft-locked:hover{opacity:1}
+.ch-lock.lock{color:var(--txt-faint)}
+
 /* ============================ misc ============================ */
 .empty{text-align:center;padding:60px 20px;color:var(--txt-faint)}
 

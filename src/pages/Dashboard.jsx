@@ -30,7 +30,7 @@ export default function Dashboard() {
             {done ? `המשך מפרק ${nx.id}` : "התחל ללמוד"} ←
           </Link>
           <Link className="btn btn-lg" to="/map">מסלול הלימוד</Link>
-          {allDone() && <Link className="btn btn-lg" to="/exam/final">מבחן הסמכה ★</Link>}
+          {allDone() && <Link className="btn btn-lg" to="/exam/final">המבחן המסכם ★</Link>}
         </div>
       </section>
 

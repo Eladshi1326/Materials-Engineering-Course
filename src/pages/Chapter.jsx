@@ -5,6 +5,7 @@ import { useStore, chap, chapterProgress, isDone, markRead } from "../lib/store.
 import { Ring } from "../components/Bits.jsx";
 import { toast } from "../lib/ui.js";
 import { Fml, Sym, typesetProse } from "../lib/math.jsx";
+import { SectionFigs } from "../figures/registry.jsx";
 
 const TABS = [
   ["lesson", "השיעור"],
@@ -41,6 +42,7 @@ function Section({ c, s, chId }) {
       {open && (
         <div className="sec-body">
           <Prose html={s.html} />
+          <SectionFigs secId={s.id} />
           {s.analogy && <div className="analogy"><b>אנלוגיה:</b> {s.analogy}</div>}
 
           <div className="helpbar">
@@ -185,7 +187,6 @@ export default function Chapter() {
   const done = isDone(chId);
   const prev = byId(chId - 1);
   const next = byId(chId + 1);
-  const chal = c.challenge?.length ? c.challenge : c.quiz.filter((q) => q.level === "hard");
   const hasDrill = c.formulas.length >= 4;
 
   return (
@@ -230,6 +231,12 @@ export default function Chapter() {
           <span className="d">14 שאלות · ציון מעבר {PASS} · עם רמזים והסברים</span>
           {p.quizBest > 0 && <span className="best">שיא: {p.quizBest}% ({p.attempts} נסיונות)</span>}
         </Link>
+        <Link className="act" to={`/ch/${chId}/play/practice`}>
+          <span className="ico">⇗</span>
+          <span className="t">תרגול מדורג</span>
+          <span className="d">קל ← בינוני ← קשה · תיאוריה + חישובים · בלי טיימר</span>
+          {p.prac > 0 && <span className="best">שיא: {p.prac}%</span>}
+        </Link>
         {c.flashcards.length > 0 && (
           <Link className="act" to={`/ch/${chId}/play/cards`}>
             <span className="ico">▤</span>
@@ -238,28 +245,12 @@ export default function Chapter() {
             {p.cards && <span className="best">✓ הושלם</span>}
           </Link>
         )}
-        {c.matching.length > 0 && (
-          <Link className="act" to={`/ch/${chId}/play/match`}>
-            <span className="ico">⇄</span>
-            <span className="t">משחק התאמה</span>
-            <span className="d">{Math.min(10, c.matching.length)} זוגות · רצפים מזכים בבונוס</span>
-            {p.match > 0 && <span className="best">שיא: {p.match} נק׳</span>}
-          </Link>
-        )}
         {hasDrill && (
           <Link className="act" to={`/ch/${chId}/play/formula`}>
             <span className="ico">ƒ</span>
             <span className="t">שליטה בנוסחאות</span>
             <span className="d">{c.formulas.length} נוסחאות · זהה, התאם וזכור</span>
             {p.fdrill > 0 && <span className="best">שיא: {p.fdrill} נק׳</span>}
-          </Link>
-        )}
-        {chal.length > 0 && (
-          <Link className="act" to={`/ch/${chId}/play/challenge`}>
-            <span className="ico">⚡</span>
-            <span className="t">אתגר מהיר</span>
-            <span className="d">{chal.length} שאלות קשות · 30 שניות לשאלה · 3 חיים</span>
-            {p.chal > 0 && <span className="best">שיא: {p.chal} נק׳</span>}
           </Link>
         )}
       </div>

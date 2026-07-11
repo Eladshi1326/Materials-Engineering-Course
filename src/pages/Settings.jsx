@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useStore, setSetting, setName, resetAll, importState, getState } from "../lib/store.js";
+import { useStore, setSetting, resetAll, importState, getState } from "../lib/store.js";
 import { toast } from "../lib/ui.js";
 
 const Row = ({ t, d, children }) => (
@@ -52,15 +52,6 @@ export default function SettingsPage() {
               <button key={k} className={S.settings.theme === k ? "on" : ""} onClick={() => setSetting("theme", k)}>{label}</button>
             ))}
           </div>
-        </Row>
-
-        <Row t="שמך (לתעודה)" d="יופיע בתעודת ההסמכה בסיום.">
-          <input
-            className="txt-in"
-            defaultValue={S.name}
-            placeholder="שם מלא"
-            onBlur={(e) => { setName(e.target.value.trim()); toast("נשמר"); }}
-          />
         </Row>
 
         <Row t="גיבוי התקדמות" d="הורדה או טעינה של קובץ JSON עם כל ההתקדמות שלך.">

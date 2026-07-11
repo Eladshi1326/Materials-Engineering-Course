@@ -60,10 +60,11 @@ export { getState };
 export function chap(id) {
   const k = String(id);
   if (!state.ch[k]) {
-    state.ch[k] = { read: [], quizBest: 0, attempts: 0, cards: false, match: 0, chal: 0, fdrill: 0, weak: [] };
+    state.ch[k] = { read: [], quizBest: 0, attempts: 0, cards: false, prac: 0, fdrill: 0, weak: [] };
   }
   if (!state.ch[k].weak) state.ch[k].weak = [];
   if (state.ch[k].fdrill == null) state.ch[k].fdrill = 0;
+  if (state.ch[k].prac == null) state.ch[k].prac = 0;
   return state.ch[k];
 }
 
@@ -84,7 +85,7 @@ export function chapterProgress(id) {
     p.read.length / Math.max(1, c.sections.length),
     Math.min(1, p.quizBest / PASS),
     p.cards ? 1 : 0,
-    Math.min(1, p.match / 60)
+    Math.min(1, p.prac / 80)
   ];
   return Math.round((parts.reduce((a, b) => a + b, 0) / parts.length) * 100);
 }
@@ -205,20 +206,15 @@ export function recordCards(chId) {
   return first;
 }
 
-export function recordMatch(chId, score) {
+export function recordPractice(chId, pct) {
   const p = chap(chId);
-  const isBest = score > p.match;
-  p.match = Math.max(p.match, score);
+  const isBest = pct > p.prac;
+  p.prac = Math.max(p.prac, pct);
   commit();
   touchStreak();
+  if (pct >= 80) grantBadge("match");
+  if (pct === 100) grantBadge("speed");
   return isBest;
-}
-
-export function recordChallenge(chId, score) {
-  const p = chap(chId);
-  p.chal = Math.max(p.chal, score);
-  commit();
-  touchStreak();
 }
 
 export function recordFormulaDrill(chId, score) {

@@ -56,18 +56,18 @@ export default function UnitList({ compact = false }) {
             <div className="chapters">
               {chs.map((c) => <ChapterCard c={c} key={c.id} />)}
 
-              <Link className={"ch exam-card" + (eb >= EXAM_PASS ? " done" : "")} to={`/exam/unit/${u.id}`}>
-                {eb >= EXAM_PASS && <span className="ch-lock">✓</span>}
+              <Link className={"ch exam-card" + (eb >= EXAM_PASS ? " done" : "") + (ready ? "" : " soft-locked")} to={`/exam/unit/${u.id}`}>
+                {eb >= EXAM_PASS ? <span className="ch-lock">✓</span> : (!ready && <span className="ch-lock lock">🔒</span>)}
                 <div className="ch-top">
                   <span className="ch-num">מבחן</span>
                   <span className="ch-title">מבחן יחידה {u.id}</span>
                 </div>
                 <div className="ch-tag">
                   20 שאלות מכל פרקי היחידה · ציון מעבר {EXAM_PASS}.
-                  {!ready && " מומלץ אחרי סיום כל הפרקים."}
+                  {!ready && " נפתח כשעוברים את כל פרקי היחידה (אפשר לפתוח ידנית בפנים)."}
                 </div>
                 <div className="ch-foot">
-                  <span className={"pill" + (eb >= EXAM_PASS ? " ok" : "")}>{ready ? "מוכן" : "פתוח"}</span>
+                  <span className={"pill" + (eb >= EXAM_PASS ? " ok" : "")}>{ready ? "מוכן" : "נעול"}</span>
                   <span className={"ch-score" + (eb >= EXAM_PASS ? " pass" : "")}>{eb ? `${eb}%` : "—"}</span>
                 </div>
               </Link>
@@ -84,20 +84,20 @@ export default function UnitList({ compact = false }) {
             <div className="unit-head">
               <span className="unit-badge">★</span>
               <div>
-                <div className="h2">מבחן ההסמכה</div>
-                <div className="tiny">50 שאלות מכל הספר. עוברים ב-{FINAL_PASS} ומקבלים תעודה.</div>
+                <div className="h2">המבחן המסכם</div>
+                <div className="tiny">50 שאלות מכל הספר. ציון מעבר {FINAL_PASS}.</div>
               </div>
               <div className="unit-line" />
             </div>
             <div className="chapters">
-              <Link className={"ch exam-card" + (fb >= FINAL_PASS ? " done" : "")} to="/exam/final">
-                {fb >= FINAL_PASS && <span className="ch-lock">★</span>}
-                <div className="ch-top"><span className="ch-num">★</span><span className="ch-title">מבחן הסמכה — מומחה חומרים</span></div>
+              <Link className={"ch exam-card" + (fb >= FINAL_PASS ? " done" : "") + (ready ? "" : " soft-locked")} to="/exam/final">
+                {fb >= FINAL_PASS ? <span className="ch-lock">★</span> : (!ready && <span className="ch-lock lock">🔒</span>)}
+                <div className="ch-top"><span className="ch-num">★</span><span className="ch-title">מבחן מסכם — כל הספר</span></div>
                 <div className="ch-tag">
-                  {ready ? "כל 22 הפרקים הושלמו. בהצלחה." : `מכסה את כל 22 הפרקים (מעבר: ${FINAL_PASS}). מומלץ אחרי השלמת כולם — ציון ${PASS}+ בכל מבחן פרק.`}
+                  {ready ? "כל 22 הפרקים הושלמו. בהצלחה." : `נפתח כשעוברים את כל 22 הפרקים בציון ${PASS}+ (אפשר לפתוח ידנית בפנים).`}
                 </div>
                 <div className="ch-foot">
-                  <span className={"pill" + (fb >= FINAL_PASS ? " gold" : "")}>{ready ? "מוכן" : "פתוח"}</span>
+                  <span className={"pill" + (fb >= FINAL_PASS ? " gold" : "")}>{ready ? "מוכן" : "נעול"}</span>
                   <span className={"ch-score" + (fb >= FINAL_PASS ? " pass" : "")}>{fb ? `${fb}%` : "—"}</span>
                 </div>
               </Link>

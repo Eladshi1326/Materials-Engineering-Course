@@ -8,16 +8,32 @@ import { addXP, grantBadge, recordExam, allDone } from "../lib/store.js";
 export default function FinalExam() {
   const [res, setRes] = useState(null);
   const [round, setRound] = useState(0);
+  const [override, setOverride] = useState(false);
   const questions = useMemo(() => examQuestions(CHAPTERS, 50), [round]);
+
+  const ready = allDone();
+  if (!ready && !override && !res) {
+    return (
+      <div className="quiz">
+        <div className="qcard center">
+          <div style={{ fontSize: "2.4rem" }}>🔒</div>
+          <h1 className="h2 mt">המבחן המסכם עדיין נעול</h1>
+          <p className="sub mt">
+            50 שאלות מכל 22 הפרקים. המבחן נפתח אוטומטית כשכל הפרקים עוברים בציון מעבר —
+            אבל אפשר לפתוח אותו ידנית כבר עכשיו.
+          </p>
+          <div className="qactions" style={{ justifyContent: "center" }}>
+            <Link className="btn btn-primary" to="/map">חזרה למסלול</Link>
+            <button className="btn" onClick={() => setOverride(true)}>פתח בכל זאת ←</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!res) {
     return (
       <>
-        {!allDone() && (
-          <div className="notice mb">
-            מבחן ההסמכה מכסה את כל 22 הפרקים. עוד לא השלמת את כולם — אפשר לנסות, אבל התעודה שווה יותר אחרי שליטה מלאה.
-          </div>
-        )}
         <QuizRunner
         key={round}
         questions={questions}
@@ -41,12 +57,11 @@ export default function FinalExam() {
     <Results
       {...res}
       passMark={FINAL_PASS}
-      passTitle="מוסמך חומרים ★"
+      passTitle="עברת את המבחן המסכם ★"
       failTitle={`לא עברת הפעם — צריך ${FINAL_PASS}%`}
       msg="50 שאלות מכל 22 הפרקים."
     >
-      {res.pass && <Link className="btn btn-primary" to="/certificate">קבל תעודה ★</Link>}
-      <button className="btn" onClick={() => { setRes(null); setRound((r) => r + 1); }}>נסה שוב</button>
+      <button className="btn btn-primary" onClick={() => { setRes(null); setRound((r) => r + 1); }}>נסה שוב</button>
       <Link className="btn" to="/">לוח בקרה</Link>
     </Results>
   );
